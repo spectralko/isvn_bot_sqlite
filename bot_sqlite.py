@@ -3,7 +3,7 @@ import telebot
 import json
 import io
 
-bot = telebot.TeleBot("1080220803:AAF9okmySN38daiPtLl8G14srVcknvCqKW4")
+bot = telebot.TeleBot("xx")
 
 
 #connect = sqlite3.connect('isvn_places.db')
