@@ -3,7 +3,7 @@ import telebot
 import json
 import io
 
-bot = telebot.TeleBot("xx")
+bot = telebot.TeleBot("1080220803:AAF9okmySN38daiPtLl8G14srVcknvCqKW4")
 
 
 #connect = sqlite3.connect('isvn_places.db')
@@ -12,7 +12,6 @@ bot = telebot.TeleBot("xx")
 
 def isvn_db():
   pass
-
 
 @bot.message_handler(commands=['start'])
 def start(message):
@@ -23,20 +22,29 @@ def show_all(message):
   connect = sqlite3.connect('isvn_places.db')
   cursor = connect.cursor()
   cursor.execute(f'SELECT * FROM isvn WHERE station_id = ?', (message.text,))
-  all_results = cursor.fetchall()
-  print(all_results)
-  result = all_results.encode('utf-8')
-  bot.reply_to(message, io.StringIO(result))
-
-
-
-
+  all_results = cursor.fetchone()
+#  print("ID", all_results[0])
+#  print("Еще чего", all_results[1])
+#  result = all_results.encode('utf-8')
+  result = f"""
+*Ветка станции:* {all_results[2]}
+*Имя станции:* {all_results[1]}
+*ШТК:* {all_results[3]}
+*ШТК-Комби:* {all_results[4]}
+*ИБП:* {all_results[5]}
+*Шкаф вестибюльный 1:* {all_results[6]}
+*Шкаф вестибюльный 2:* {all_results[7]}
+*Шкаф вестибюльный 3:* {all_results[8]}
+*Шкаф вестибюльный 4:* {all_results[9]}
+*Шкаф вестибюльный 5:* {all_results[10]}
+*АРМ:* {all_results[11]}
+*Комментарий:* {all_results[12]}
+            """
+  bot.reply_to(message, result, parse_mode= 'Markdown')
 
 @bot.message_handler(commands=['where_stk'])
 def where_stk(message):
   pass
-
-
 
 if __name__ == '__main__':
   while True:
