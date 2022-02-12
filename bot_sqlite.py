@@ -2,6 +2,7 @@ import sqlite3
 import telebot
 import json
 import io
+import time
 
 bot = telebot.TeleBot("xxxxxxxxxxxxxxxxxxxxx")
 
@@ -18,9 +19,6 @@ def show_all(message):
   cursor = connect.cursor()
   cursor.execute(f'SELECT * FROM isvn WHERE station_id = ?', (message.text,))
   all_results = cursor.fetchone()
-#  print("ID", all_results[0])
-#  print("Еще чего", all_results[1])
-#  result = all_results.encode('utf-8')
   result = f"""
 *Ветка станции:* {all_results[2]}
 *Имя станции:* {all_results[1]}
