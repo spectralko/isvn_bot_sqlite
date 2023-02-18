@@ -4,7 +4,7 @@ import json
 import io
 import time
 
-bot = telebot.TeleBot("1080220803:AAF9okmySN38daiPtLl8G14srVcknvCqKW4")
+bot = telebot.TeleBot("XXXXX:XXXXX")
 
 def isvn_db():
   pass
